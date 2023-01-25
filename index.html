@@ -78,10 +78,11 @@
         
         let button = document.getElementById("submit")
         let result = document.getElementById("results")
-        let answer = 'blue'
+        let answer
         
 
         button.addEventListener('click', (event) => {
+            
             result.textContent = `you are sort of ${answer}`;
         });
 
