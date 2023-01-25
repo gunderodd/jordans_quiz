@@ -5,96 +5,105 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script src="javascript.js"></script>
 </head>
 <body>
-    <h1 style="text-align: center;">hi there</h1>
-
-        <!-- i'm going to want this to be a 'for each' thing, where they are filled in from an imported library of questions -->
-    <fieldset>
-        <legend>pick a color</legend>
-    
-        <div>
-            <input type="radio" id="red" name="color1" value="red" checked>
-            <label for="red">red</label>
-        </div>
-    
-        <div>
-            <input type="radio" id="blue" name="color1" value="blue">
-            <label for="blue">blue</label>
-        </div>
-    
-        <div>
-            <input type="radio" id="green" name="color1" value="green">
-            <label for="green">green</label>
-        </div>
+<!-- begin quiz html -->
+<h1>what type of fruit are you?</h1>
+<form name="quiz" action="javascript:finish();">
+    <fieldset style="width:300px;">
+        <!-- <legend><strong>na</strong> </legend> -->
+        <font size="2" face="Verdana, Arial, Helvetica, sans-serif">
+            <input name="question_1" type="radio" value="1"> i am usually red
+        </font><br />
+        <font size="2" face="Verdana, Arial, Helvetica, sans-serif">
+            <input name="question_1" type="radio" value="2"> i'm named after my color
+        </font><br />
     </fieldset>
-
-    <fieldset>
-        <legend>pick another color</legend>
-    
-        <div>
-            <input type="radio" id="yellow" name="color2" value="yellow" checked>
-            <label for="yellow">yellow</label>
-        </div>
-    
-        <div>
-            <input type="radio" id="navy blue" name="color2" value="navy blue">
-            <label for="navy blue">navy blue</label>
-        </div>
-    
-        <div>
-            <input type="radio" id="olive" name="color2" value="olive">
-            <label for="olive">olive</label>
-        </div>
+    <br /><br />
+    <fieldset style="width:300px;">
+        <!-- <legend><strong>na</strong> </legend> -->
+        <font size="2" face="Verdana, Arial, Helvetica, sans-serif">
+            <input name="question_2" type="radio" value="2"> i'm completely round
+        </font><br />
+        <font size="2" face="Verdana, Arial, Helvetica, sans-serif">
+            <input name="question_2" type="radio" value="3"> i'm longish
+        </font><br />
     </fieldset>
-
-    <fieldset>
-        <legend>pick a final color</legend>
-    
-        <div>
-            <input type="radio" id="orange" name="color3" value="orange" checked>
-            <label for="orange">orange</label>
-        </div>
-    
-        <div>
-            <input type="radio" id="teal" name="color3" value="teal">
-            <label for="teal">teal</label>
-        </div>
-    
-        <div>
-            <input type="radio" id="emerald" name="color3" value="emerald">
-            <label for="emerald">emerald</label>
-        </div>
+    <br /><br />
+    <fieldset style="width:300px;">
+        <!-- <legend><strong>na</strong> </legend> -->
+        <font size="2" face="Verdana, Arial, Helvetica, sans-serif">
+            <input name="question_3" type="radio" value="3"> i'm definitely yellow
+        </font><br />
+        <font size="2" face="Verdana, Arial, Helvetica, sans-serif">
+            <input name="question_3" type="radio" value="1"> one bad one of me spoils the bunch
+        </font><br />
     </fieldset>
-
-    <input id="submit" style="margin: 1rem; text-align: center;" type="button" value="SUBMIT COLOR PREFERENCES"/>
-
-    <div id="results" style="width: 300px; height: 100px; border: 1px solid black;"></div>
-
-    <script>
-
-        function myFunction() {
-        }
-        
-        let button = document.getElementById("submit")
-        let result = document.getElementById("results")
-        let answer
-        
-
-        button.addEventListener('click', (event) => {
-            
-            result.textContent = `you are sort of ${answer}`;
-        });
-
-    </script>
-
-    <style>
-
-        /* * {
-            text-align: center;
-        } */
-
-    </style>
-
+    <br /><br />
+    <fieldset style="width:300px;">
+        <!-- <legend><strong>na</strong> </legend> -->
+        <font size="2" face="Verdana, Arial, Helvetica, sans-serif">
+            <input name="question_4" type="radio" value="3"> i grow in clusters
+        </font><br />
+        <font size="2" face="Verdana, Arial, Helvetica, sans-serif">
+            <input name="question_4" type="radio" value="1"> cider is usually made with me
+        </font><br />
+    </fieldset>
+    <br /><br />
+    <fieldset style="width:300px;">
+        <!-- <legend><strong>na</strong> </legend> -->
+        <font size="2" face="Verdana, Arial, Helvetica, sans-serif">
+            <input name="question_5" type="radio" value="1"> i have a core
+        </font><br />
+        <font size="2" face="Verdana, Arial, Helvetica, sans-serif">
+            <input name="question_5" type="radio" value="2"> i have a pitted peel
+        </font><br />
+    </fieldset>
+    <br /><br />
+    <fieldset style="width:300px;">
+        <!-- <legend><strong>na</strong> </legend> -->
+        <font size="2" face="Verdana, Arial, Helvetica, sans-serif">
+            <input name="question_6" type="radio" value="2"> i have natural slices
+        </font><br />
+        <font size="2" face="Verdana, Arial, Helvetica, sans-serif">
+            <input name="question_6" type="radio" value="3"> i have a waxy rubbery peel
+        </font><br />
+    </fieldset>
+    <br /><br />
+    <fieldset style="width:300px;">
+        <!-- <legend><strong>na</strong> </legend> -->
+        <font size="2" face="Verdana, Arial, Helvetica, sans-serif">
+            <input name="question_7" type="radio" value="2"> i'm famous for breakfast juice
+        </font><br />
+        <font size="2" face="Verdana, Arial, Helvetica, sans-serif">
+            <input name="question_7" type="radio" value="3"> i'm famous for making people slip
+        </font><br />
+    </fieldset>
+    <br /><br />
+    <fieldset style="width:300px;">
+        <!-- <legend><strong>na</strong> </legend> -->
+        <font size="2" face="Verdana, Arial, Helvetica, sans-serif">
+            <input name="question_8" type="radio" value="3"> monkeys like me best
+        </font><br />
+        <font size="2" face="Verdana, Arial, Helvetica, sans-serif">
+            <input name="question_8" type="radio" value="1"> american pies like me best
+        </font><br />
+    </fieldset>
+    <br /><br />
+    <fieldset style="width:300px;">
+        <!-- <legend><strong>na</strong> </legend> -->
+        <font size="2" face="Verdana, Arial, Helvetica, sans-serif">
+            <input name="question_9" type="radio" value="1"> give me to your teacher
+        </font><br />
+        <font size="2" face="Verdana, Arial, Helvetica, sans-serif">
+            <input name="question_9" type="radio" value="2"> nothing rhymes with me
+        </font><br />
+    </fieldset>
+    <br /><br /> <INPUT TYPE="submit" value="Finish">
+    <INPUT TYPE="reset" value="Reset">
+</form>
+<!-- end quiz html -->
+    
 </body>
 </html>
