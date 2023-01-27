@@ -34,3 +34,19 @@ function finish() {
         location = results[j[0]] + ext;
     }
 }
+
+function scroll() {
+
+    let labels = document.getElementsByTagName("label")
+    // let mainWrapper = document.getElementById("main-wrapper")
+    let arrow = document.getElementById("arrow")
+
+    for (i = 0; i < labels.length; i++) {
+        [arrow, labels[i]].forEach(item => {
+            item.addEventListener('click', (event) =>{
+                console.log(mainWrapper)
+                window.scrollBy(0, 50)
+            } )
+        })
+    }
+}
