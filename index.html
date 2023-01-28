@@ -4,8 +4,12 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Personality Test</title>
     <script src="script.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+
+    
 </head>
 <body>
 
@@ -66,7 +70,7 @@
 
         #arrow {
             cursor: pointer;
-            animation-name: swell;
+            /* animation-name: swell; */
             animation-duration: .5s;
             animation-direction: alternate;
             animation-iteration-count: infinite;
@@ -86,7 +90,7 @@
     <div id="main-wrapper">
         <form name="quiz" action="javascript:finish();">
             <h1 style="">Personality Quiz</h1>
-            <h1 id="arrow" style="font-size: 10rem; font-weight: 900; margin-bottom: 100vh;">&ShortDownArrow;</h1>
+            <h1 id="arrow" class="active" style="font-size: 10rem; font-weight: 900; margin-bottom: 100vh;">&ShortDownArrow;</h1>
             <fieldset style="width:300px;">
                 <legend><strong>i often shy away from large parties</strong> </legend>
                 <font size="2" face="Verdana, Arial, Helvetica, sans-serif">
@@ -202,13 +206,22 @@
         </form>
         <!-- end quiz html -->
     </div>
+
+
+    <!-- check if jquery is loaded -->
+    <!-- <script>
+        window.onload = (e) => {
+        alert(window.$?"jquery is working":"jquery is not working")
+    }
+    </script> -->
     
     <script>
 
         window.onload = (event) => {
             scroll()
         };
-
+        
     </script>
+
 </body>
 </html>

@@ -1,3 +1,4 @@
+// the logic behind the quiz and scoring from generator website
 function finish() {
     var ext = '.html';
     var results = new Array("none", "introvert", "extrovert", "batman");
@@ -35,18 +36,56 @@ function finish() {
     }
 }
 
+// scroll functionality
 function scroll() {
 
-    let labels = document.getElementsByTagName("label")
+    // let labels = document.getElementsByTagName("label")
     // let mainWrapper = document.getElementById("main-wrapper")
-    let arrow = document.getElementById("arrow")
+    // let arrow = document.getElementById("arrow")
 
-    for (i = 0; i < labels.length; i++) {
-        [arrow, labels[i]].forEach(item => {
-            item.addEventListener('click', (event) =>{
-                console.log(mainWrapper)
-                window.scrollBy(0, 50)
-            } )
-        })
-    }
+    arrow.addEventListener('click', (e) => {
+        window.scrollBy(0, 500)
+    })
+
+    // for(let label of labels) {
+        // console.log(item)
+
+        // item.addEventListener('click', (event) =>{
+            // console.log(labels[i + 1])
+            // console.log(item);
+    
+            $('label').click(function () {
+                var $target = $('label.active').next('label');
+                // console.log($target);
+
+                // console.log('label')
+
+                if ($target.length == 0)
+                    $target = $('label:first');
+            
+                $('html, body').animate({
+                    scrollTop: $target.offset().top
+                }, 'slow');
+            
+                $('.active').removeClass('active');
+                $target.addClass('active');
+            });
+
+    // }
+    
+    // for (i = 0; i < labels.length; i++) {
+        // console.log(labels)
+        // Object.keys(labels).forEach(item => {
+            // console.log(itemfhtml);
+            
+
+
+
+            // } )
+        // })
+    // }
 }
+
+
+
+
