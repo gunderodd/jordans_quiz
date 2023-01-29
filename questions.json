@@ -1,0 +1,40 @@
+{
+    "questions": [
+        {
+            "text": "All men have limits. I ignore mine.",
+            "result": "batman"
+        },
+        {
+            "text": "As a man, I am flesh and blood. I can be ignored, I can be destroyed. But as a symbol, I can be incorruptible. I can be everlasting.",
+            "result": "batman"
+        },
+        {
+            "text": "I am vengeance. I am the night.",
+            "result": "batman"
+        },
+        {
+            "text": "I prefer to spend time alone rather than with others",
+            "result": "introvert"
+        },
+        {
+            "text": "I enjoy being around people and socializing",
+            "result": "extrovert"
+        },
+        {
+            "text": "I am energized by being around others",
+            "result": "extrovert"
+        },
+        {
+            "text": "I am energized by being alone",
+            "result": "introvert"
+        },
+        {
+            "text": "I find small talk to be draining",
+            "result": "introvert"
+        },
+        {
+            "text": "I enjoy being the center of attention",
+            "result": "extrovert"
+        }
+    ]
+}

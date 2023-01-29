@@ -8,7 +8,6 @@
     <title>Jordan's Personality Quiz</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css">
     <style>
-
         .question {
             display: none;
             position: absolute;
@@ -54,7 +53,7 @@
             display: none;
         }
 
-        input[type="radio"] + label {
+        input[type="radio"]+label {
             display: inline-block;
             padding: 10px;
             background-color: #ddd;
@@ -63,26 +62,21 @@
             width: 100px;
         }
 
-        input[type="radio"] + label:hover {
+        input[type="radio"]+label:hover {
             display: inline-block;
             font-weight: 500;
             cursor: pointer;
-            -webkit-tap-highlight-color: transparent;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
         }
 
-        input[type="radio"] + .agreeButton:hover {
+        input[type="radio"]+.agreeButton:hover {
             background-color: rgb(105, 201, 145);
         }
 
-        input[type="radio"] + .disagreeButton:hover {
+        input[type="radio"]+.disagreeButton:hover {
             background-color: rgb(204, 155, 155);
         }
 
-        input[type="radio"]:checked + label {
+        input[type="radio"]:checked+label {
             background-color: #aaa;
         }
 
@@ -99,27 +93,21 @@
             text-align: center;
         }
 
-        button {
-            -webkit-tap-highlight-color: transparent;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
-
 
     </style>
     <script src="script.js"></script>
 </head>
 
 <body>
-    <h1 class="title">Are you an Intervert or Extrovert <i>(or Batman)</i></h1>
-    <div id="quiz" class="is-fullheight is-flex">
-        <form id="quizForm" class="has-text-centered">
-            <!-- dynamically generate the questions and answers -->
-        </form>
-    </div>
-    <button id="start-over" class="button is-small">Start Over</button>
+    <h1 class="title">You are an Introvert!</h1>
+
+    <a href="index.html">back</a>
+
 </body>
 
 </html>
