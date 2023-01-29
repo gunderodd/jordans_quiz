@@ -24,6 +24,12 @@ fetch("questions.json")
         if (activeQuestion) {
             activeQuestion.classList.remove("active");
         }
+
+        // start the quiz over / refresh the page
+        document.getElementById("start-over").addEventListener("click", function () {
+            location.reload();
+        });
+
     
         // Get the current question
         var question = questions[currentQuestion];
@@ -34,14 +40,18 @@ fetch("questions.json")
         questionDiv.classList.add("active");
         questionDiv.innerHTML = `
             <p class="questionNumber">${questionIndex + 1} / ${questions.length}</p>
-            <p>${question.text}</p>
-            <div>
-                <input type="radio" id="answer-${currentQuestion+1}-1" name="answer-${currentQuestion+1}" value="agree">
-                <label for="answer-${currentQuestion+1}-1">Agree</label>
+            <div class="question-holder">
+                <p class="title">${question.text}</p>
             </div>
-            <div>
-                <input type="radio" id="answer-${currentQuestion+1}-2" name="answer-${currentQuestion+1}" value="disagree">
-                <label for="answer-${currentQuestion+1}-2">Disagree</label>
+            <div class="container">
+                <div>
+                    <input type="radio" id="answer-${currentQuestion+1}-1" name="answer-${currentQuestion+1}" value="agree">
+                    <label for="answer-${currentQuestion+1}-1" class="agreeButton">Agree</label>
+                </div>
+                <div>
+                    <input type="radio" id="answer-${currentQuestion+1}-2" name="answer-${currentQuestion+1}" value="disagree">
+                    <label for="answer-${currentQuestion+1}-2" class="disagreeButton">Disagree</label>
+                </div>
             </div>
         `;
         quizForm.appendChild(questionDiv);
@@ -67,24 +77,6 @@ fetch("questions.json")
     }
     
     displayQuestion();
-        
-    // these were the submit button and reset button for testing, probably done with them
-        // add event listener to the submit button
-        // document.getElementById("submit-button").addEventListener("click", event => {
-        //     event.preventDefault();
-        //     checkAnswers();
-        // });
-        
-        // document.getElementById('autofill-button').addEventListener('click', autoFillTest);
-        
-        // function autoFillTest() {
-        //     var choices = document.querySelectorAll('.answer-choices');
-        //     choices.forEach(function (choice) {
-        //         var inputs = choice.querySelectorAll('input[type="radio"]');
-        //         var randomIndex = Math.floor(Math.random() * inputs.length);
-        //         inputs[randomIndex].checked = true;
-        //     });
-        // }
 
         function checkAnswers() {
 
@@ -107,29 +99,11 @@ fetch("questions.json")
                 // console.log(selectedAnswer[0]);
                 if (selectedAnswer[0].checked) {
                     if (selectedAnswer[0].checked) {
-                        // for (var j = 0; j < results.length; j++) {
-                        //     if (question.result === results[j]) {
-                        //         window[results[j]]++;
-                        //     }
-                        // }
                         results[question.result]++;
-
                     }
-    
                 }
             }
 
-
-
-            // var highestResult = "";
-            // var highestCount = 0;
-            // for (var result in results) {
-            //     if (results[result] > highestCount) {
-            //         highestResult = result;
-            //         highestCount = results[result];
-            //     }
-            // }
-            // window.location.href = `${highestResult}.html`;
             var result = "";
             var highestScore = 0;
             var tiedResults = [];
