@@ -1,39 +1,39 @@
 {
     "questions": [
         {
-            "question": "All men have limits. I ignore mine.",
+            "text": "All men have limits. I ignore mine.",
             "result": "batman"
         },
         {
-            "question": "As a man, I am flesh and blood. I can be ignored, I can be destroyed. But as a symbol, I can be incorruptible. I can be everlasting.",
+            "text": "As a man, I am flesh and blood. I can be ignored, I can be destroyed. But as a symbol, I can be incorruptible. I can be everlasting.",
             "result": "batman"
         },
         {
-            "question": "I am vengeance. I am the night.",
+            "text": "I am vengeance. I am the night.",
             "result": "batman"
         },
         {
-            "question": "I prefer to spend time alone rather than with others",
+            "text": "I prefer to spend time alone rather than with others",
             "result": "introvert"
         },
         {
-            "question": "I enjoy being around people and socializing",
+            "text": "I enjoy being around people and socializing",
             "result": "extrovert"
         },
         {
-            "question": "I am energized by being around others",
+            "text": "I am energized by being around others",
             "result": "extrovert"
         },
         {
-            "question": "I am energized by being alone",
+            "text": "I am energized by being alone",
             "result": "introvert"
         },
         {
-            "question": "I find small talk to be draining",
+            "text": "I find small talk to be draining",
             "result": "introvert"
         },
         {
-            "question": "I enjoy being the center of attention",
+            "text": "I enjoy being the center of attention",
             "result": "extrovert"
         }
     ]

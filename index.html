@@ -1,20 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        .question {
+            display: none;
+        }
+
+        .question.active {
+            display: block;
+            width: 500px;
+            height: 300px;
+            margin: 0 auto;
+            padding: 50px;
+            box-sizing: border-box;
+            border: 1px solid black;
+            text-align: center;
+        }
+    </style>
     <script src="script.js"></script>
 </head>
+
 <body>
 
     <div id="quiz">
-        <form id="quizForm"></form>
-        <button id="submit-button" type="submit">Submit</button>
-        <button id="autofill-button" type="submit">autofill test</button>
-      </div>
-      
-    
+        <form id="quizForm">
+            <!-- dynamically generate the questions and answers -->
+        </form>
+        <!-- can probably discard these -->
+        <!-- <button id="submit-button" type="submit">Submit</button>
+        <button id="autofill-button" type="submit">Autofill Test</button> -->
+    </div>
+
 </body>
+
 </html>
