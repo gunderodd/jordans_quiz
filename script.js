@@ -1,91 +1,121 @@
-// the logic behind the quiz and scoring from generator website
-function finish() {
-    var ext = '.html';
-    var results = new Array("none", "introvert", "extrovert", "batman");
-    var nums = new Array(4);
-    for (var i = 0; i < nums.length; i++) nums[i] = 0;
-    for (var i = 1; i <= 9; i++) {
-        var q = document.forms['quiz'].elements['question_' + i];
-        if (q[0].type == 'checkbox') {
-            var n = 0;
-        }
-        for (var j = 0; j < q.length; j++) {
-            if (q[j].checked) {
-                var a = q[j].value.split(',');
-                for (var k = 0; k < a.length; k++) {
-                    nums[a[k]]++;
-                }
-                if (q[j].type == 'radio') break;
-                else n++;
-            }
-            if (j == q.length - 1 && q[j].type == 'radio') { nums[0]++; }
-        }
-        if (q[0].type == 'checkbox' && ((document.forms['quiz'].elements['question_' + i + '_min'] && n < document.forms['quiz'].elements['question_' + i + '_min'].value) || (document.forms['quiz'].elements['question_' + i + '_max'] && n > document.forms['quiz'].elements['question_' + i + '_max'].value))) nums[0]++;
-    }
-    var j = new Array('0');
-    for (i in nums) if (nums[i] > nums[j[0]]) { j = new Array('' + i); } else if (nums[i] == nums[j[0]]) j[j.length] = i;
+// put all global variables here
 
-    if (nums[0] != 0) {
-        alert('You missed or incorrectly answered ' + nums[0] + ' questions!');
-    }
-    else if (j[0] == 0) {
-        alert('No result could be determined.');
-    }
-    else {
-        location = results[j[0]] + ext;
-    }
-}
 
-// scroll functionality
-function scroll() {
+// import the questions and answers from a separate JSON file
+fetch("questions.json")
+.then(response => response.json())
+.then(data => {
+    // use the data to generate the quiz
+    const quizForm = document.getElementById("quizForm");
+    let score = 0;
+    data.questions.forEach((question, index) => {
+        // create a container for the question
+        const questionContainer = document.createElement("div");
+        questionContainer.classList.add("question-container");
+        questionContainer.id = `question-${index + 1}`;
+        
+        // create the question text
+        const questionText = document.createElement("h2");
+        questionText.innerText = question.question;
+        questionContainer.appendChild(questionText);
+        
+        // create the answer choices
+        const answerChoices = document.createElement("div");
+        answerChoices.classList.add("answer-choices");
+        questionContainer.appendChild(answerChoices);
+        
+        const agree = document.createElement("input");
+        agree.type = "radio";
+        agree.name = `answer-${index + 1}`;
+            agree.value = "agree";
+            agree.id = `agree-${index + 1}`;
 
-    // let labels = document.getElementsByTagName("label")
-    // let mainWrapper = document.getElementById("main-wrapper")
-    // let arrow = document.getElementById("arrow")
-
-    arrow.addEventListener('click', (e) => {
-        window.scrollBy(0, 500)
-    })
-
-    // for(let label of labels) {
-        // console.log(item)
-
-        // item.addEventListener('click', (event) =>{
-            // console.log(labels[i + 1])
-            // console.log(item);
-    
-            $('label').click(function () {
-                var $target = $('label.active').next('label');
-                // console.log($target);
-
-                // console.log('label')
-
-                if ($target.length == 0)
-                    $target = $('label:first');
+            const agreeLabel = document.createElement("label");
+            agreeLabel.htmlFor = agree.id;
+            agreeLabel.innerText = "Agree";
+            answerChoices.appendChild(agree);
+            answerChoices.appendChild(agreeLabel);
             
-                $('html, body').animate({
-                    scrollTop: $target.offset().top
-                }, 'slow');
+            const disagree = document.createElement("input");
+            disagree.type = "radio";
+            disagree.name = `answer-${index + 1}`;
+            disagree.value = "disagree";
+            disagree.id = `disagree-${index + 1}`;
             
-                $('.active').removeClass('active');
-                $target.addClass('active');
+            const disagreeLabel = document.createElement("label");
+            disagreeLabel.htmlFor = disagree.id;
+            disagreeLabel.innerText = "Disagree";
+            answerChoices.appendChild(disagree);
+            answerChoices.appendChild(disagreeLabel);
+            
+            quizForm.appendChild(questionContainer);
+        });
+        
+        // add event listener to the submit button
+        document.getElementById("submit-button").addEventListener("click", event => {
+            event.preventDefault();
+            checkAnswers();
+        });
+        
+        document.getElementById('autofill-button').addEventListener('click', autoFillTest);
+        
+        function autoFillTest() {
+            // console.log("testing");
+            var choices = document.querySelectorAll('.answer-choices');
+            choices.forEach(function (choice) {
+                var inputs = choice.querySelectorAll('input[type="radio"]');
+                var randomIndex = Math.floor(Math.random() * inputs.length);
+                inputs[randomIndex].checked = true;
             });
+        }
 
-    // }
-    
-    // for (i = 0; i < labels.length; i++) {
-        // console.log(labels)
-        // Object.keys(labels).forEach(item => {
-            // console.log(itemfhtml);
+        // var introvert = 0;
+        // var extrovert = 0;
+        // var batman = 0;
+        
+        // function checkAnswers() {
+        //     var quizForm = document.getElementById("quizForm");
+        //     console.log(quizForm.elements);
+        //     for (var i = 0; i < quizForm.elements.length; i++) {
+        //         var question = quizForm.elements[i];
+        //         console.log(question);
+        //         if (question.type === "radio" && question.checked) {
+        //             if (question.value === "introvert") {
+        //                 introvert++;
+        //             } else if (question.value === "extrovert") {
+        //                 extrovert++;
+        //             } else if (question.value === "batman") {
+        //                 batman++;
+        //             }
+        //         }
+        //     }
+        //     alert("introvert: " + introvert + " extrovert: " + extrovert + " batman: " + batman);
+        // }
+        function checkAnswers() {
+            var quizForm = document.getElementById("quizForm");
+            var questions = data.questions; // get the questions from the JSON data
+            var introvert = 0;
+            var extrovert = 0;
+            var batman = 0;
             
+            for (var i = 0; i < questions.length; i++) {
+                var question = questions[i];
+                var selectedAnswer = quizForm.elements[`answer-${i+1}`];
+                console.log(selectedAnswer[0]);
+                if (selectedAnswer[0].checked) {
+                    if (question.result === "introvert") {
+                        introvert++;
+                    } else if (question.result === "extrovert") {
+                        extrovert++;
+                    } else if (question.result === "batman") {
+                        batman++;
+                    }
+                }
+            }
+            alert("introvert: " + introvert + " extrovert: " + extrovert + " batman: " + batman);
+        }
+        
+        
+        
 
-
-
-            // } )
-        // })
-    // }
-}
-
-
-
-
+    })
