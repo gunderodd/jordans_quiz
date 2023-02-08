@@ -1,40 +1,292 @@
 {
-    "questions": [
-        {
-            "text": "All men have limits. I ignore mine.",
-            "result": "Batman"
-        },
-        {
-            "text": "As a man, I am flesh and blood. I can be ignored, I can be destroyed. But as a symbol, I can be incorruptible. I can be everlasting.",
-            "result": "Batman"
-        },
-        {
-            "text": "I am vengeance. I am the night.",
-            "result": "Batman"
-        },
-        {
-            "text": "I prefer to spend time alone rather than with others",
-            "result": "Introvert"
-        },
-        {
-            "text": "I enjoy being around people and socializing",
-            "result": "Extrovert"
-        },
-        {
-            "text": "I am energized by being around others",
-            "result": "Extrovert"
-        },
-        {
-            "text": "I am energized by being alone",
-            "result": "Introvert"
-        },
-        {
-            "text": "I find small talk to be draining",
-            "result": "Introvert"
-        },
-        {
-            "text": "I enjoy being the center of attention",
-            "result": "Extrovert"
-        }
-    ]
+  "questions": [
+    {
+      "text": "I've been romantic and imaginative.",
+      "result": "Type 4: The Individualist"
+    },
+    {
+      "text": "I've been pragmatic and down to earth.",
+      "result": "Type 6: The Loyalist"
+    },
+    {
+      "text": "I have tended to take on confrontations.",
+      "result": "Type 8: The Challenger"
+    },
+    {
+      "text": "I have tended to avoid confrontations.",
+      "result": "Type 9: The Peacemaker"
+    },
+    {
+      "text": "I have typically been diplomatic, charming, and ambitious.",
+      "result": "Type 3: The Achiever"
+    },
+    {
+      "text": "I have typically been direct, formal, and idealistic.",
+      "result": "Type 1: The Reformer"
+    },
+    {
+      "text": "I have tended to be focused and intense.",
+      "result": "Type 5: The Investigator"
+    },
+    {
+      "text": "I have tended to be spontaneous and fun-loving.",
+      "result": "Type 7: The Enthusiast"
+    },
+    {
+      "text": "I have been a hospitable person and have enjoyed welcoming new friends into my life.",
+      "result": "Type 2: The Helper"
+    },
+    {
+      "text": "I have been a private person and have not mixed much with others.",
+      "result": "Type 4: The Individualist"
+    },
+    {
+      "text": "Generally, it's been easy to 'get a rise' out of me.",
+      "result": "Type 6: The Loyalist"
+    },
+    {
+      "text": "Generally, it's been difficult to 'get a rise' out of me.",
+      "result": "Type 9: The Peacemaker"
+    },
+    {
+      "text": "I've been more of a 'street-smart' survivor.",
+      "result": "Type 8: The Challenger"
+    },
+    {
+      "text": "I've been more of a 'high-minded' idealist.",
+      "result": "Type 1: The Reformer"
+    },
+    {
+      "text": "I have needed to show affection to people.",
+      "result": "Type 2: The Helper"
+    },
+    {
+      "text": "I have preferred to maintain a certain distance with people.",
+      "result": "Type 5: The Investigator"
+    },
+    {
+      "text": "When presented with a new experience, I've usually asked myself if it would be useful to me.",
+      "result": "Type 3: The Achiever"
+    },
+    {
+      "text": "When presented with a new experience, I've usually asked myself if it would be enjoyable.",
+      "result": "Type 7: The Enthusiast"
+    },
+    {
+      "text": "I have tended to focus too much on myself.",
+      "result": "Type 4: The Individualist"
+    },
+    {
+      "text": "I have tended to focus too much on others.",
+      "result": "Type 9: The Peacemaker"
+    },
+    {
+      "text": "Others have relied on my insight and knowledge.",
+      "result": "Type 5: The Investigator"
+    },
+    {
+      "text": "Others have relied on my strength and decisiveness.",
+      "result": "Type 8: The Challenger"
+    },
+    {
+      "text": "I have come across as being too unsure of myself.",
+      "result": "Type 6: The Loyalist"
+    },
+    {
+      "text": "I have come across as being too sure of myself.",
+      "result": "Type 1: The Reformer"
+    },
+    {
+      "text": "I have been more relationship-oriented than goal-oriented.",
+      "result": "Type 2: The Helper"
+    },
+    {
+      "text": "I have been more goal-oriented than relationship-oriented.",
+      "result": "Type 3: The Achiever"
+    },
+    {
+      "text": "I have not been able to speak up for myself very well.",
+      "result": "Type 4: The Individualist"
+    },
+    {
+      "text": "I have been outspoken—I've said what others wished they had nerve to say.",
+      "result": "Type 7: The Enthusiast"
+    },
+    {
+      "text": "It's been difficult for me to stop considering alternatives and do something definite.",
+      "result": "Type 5: The Investigator"
+    },
+    {
+      "text": "It's been difficult for me to take it easy and be more flexible.",
+      "result": "Type 1: The Reformer"
+    },
+    {
+      "text": "I have tended to be hesitant and procrastinate.",
+      "result": "Type 6: The Loyalist"
+    },
+    {
+      "text": "I have tended to be bold and domineering.",
+      "result": "Type 8: The Challenger"
+    },
+    {
+      "text": "My reluctance to get too involved has gotten me into trouble with people.",
+      "result": "Type 9: The Peacemaker"
+    },
+    {
+      "text": "My eagerness to have people depend on me has gotten me into trouble with them.",
+      "result": "Type 2: The Helper"
+    },
+    {
+      "text": "Usually, I have been able to put my feelings aside to get job done.",
+      "result": "Type 3: The Achiever"
+    },
+    {
+      "text": "Usually, I have needed to work through my feelings before I could act.",
+      "result": "Type 4: The Individualist"
+    },
+    {
+      "text": "Generally, I have been methodical and cautious.",
+      "result": "Type 6: The Loyalist"
+    },
+    {
+      "text": "Generally, I have been adventurous and taken risks.",
+      "result": "Type 7: The Enthusiast"
+    },
+    {
+      "text": "I have tended to be a supportive, giving person who enjoys company of others.",
+      "result": "Type 2: The Helper"
+    },
+    {
+      "text": "I have tended to be a serious, reserved person who likes discussing issues.",
+      "result": "Type 1: The Reformer"
+    },
+    {
+      "text": "I've often felt need to be a 'pillar of strength.'",
+      "result": "Type 8: The Challenger"
+    },
+    {
+      "text": "I've often felt need to perform perfectly.",
+      "result": "Type 3: The Achiever"
+    },
+    {
+      "text": "I've typically been interested in asking tough questions and maintaining my independence.",
+      "result": "Type 5: The Investigator"
+    },
+    {
+      "text": "I've typically been interested in maintaining my stability and peace of mind.",
+      "result": "Type 9: The Peacemaker"
+    },
+    {
+      "text": "I've been too hard-nosed and sceptical.",
+      "result": "Type 6: The Loyalist"
+    },
+    {
+      "text": "I've been too soft-hearted and sentimental.",
+      "result": "Type 2: The Helper"
+    },
+    {
+      "text": "I've often worried that I'm missing out on something better.",
+      "result": "Type 7: The Enthusiast"
+    },
+    {
+      "text": "I've often worried that if I let down my guard, someone will take advantage of me.",
+      "result": "Type 8: The Challenger"
+    },
+    {
+      "text": "My habit of being 'stand-offish' has annoyed people.",
+      "result": "Type 4: The Individualist"
+    },
+    {
+      "text": "My habit of telling people what to do has annoyed people.",
+      "result": "Type 1: The Reformer"
+    },
+    {
+      "text": "Usually, when troubles have gotten to me, I have been able to 'tune them out.'",
+      "result": "Type 9: The Peacemaker"
+    },
+    {
+      "text": "Usually, when troubles have gotten to me, I have treated myself to something I've enjoyed.",
+      "result": "Type 7: The Enthusiast"
+    },
+    {
+      "text": "I have relied upon my friends and they have known that they can depend on me.",
+      "result": "Type 6: The Loyalist"
+    },
+    {
+      "text": "I have not relied on people; I have done things on my own.",
+      "result": "Type 3: The Achiever"
+    },
+    {
+      "text": "I have tended to be detached and preoccupied.",
+      "result": "Type 5: The Investigator"
+    },
+    {
+      "text": "I have tended to be moody and self-absorbed.",
+      "result": "Type 4: The Individualist"
+    },
+    {
+      "text": "I have liked to challenge people and 'shake them up.'",
+      "result": "Type 8: The Challenger"
+    },
+    {
+      "text": "I have liked to comfort people and calm them down.",
+      "result": "Type 2: The Helper"
+    },
+    {
+      "text": "I have generally been an outgoing, sociable person.",
+      "result": "Type 7: The Enthusiast"
+    },
+    {
+      "text": "I have generally been an earnest, self-disciplined person.",
+      "result": "Type 1: The Reformer"
+    },
+    {
+      "text": "I've usually been shy about showing my abilities.",
+      "result": "Type 9: The Peacemaker"
+    },
+    {
+      "text": "I've usually liked to let people know what I can do well.",
+      "result": "Type 3: The Achiever"
+    },
+    {
+      "text": "Pursuing my personal interests has been more important to me than having comfort and security.",
+      "result": "Type 5: The Investigator"
+    },
+    {
+      "text": "Having comfort and security has been more important to me than pursuing my personal interests.",
+      "result": "Type 6: The Loyalist"
+    },
+    {
+      "text": "When I've had conflict with others, I've tended to withdraw.",
+      "result": "Type 4: The Individualist"
+    },
+    {
+      "text": "When I've had conflict with others, I've rarely backed down.",
+      "result": "Type 8: The Challenger"
+    },
+    {
+      "text": "I have given in too easily and let others push me around.",
+      "result": "Type 9: The Peacemaker"
+    },
+    {
+      "text": "I have been too uncompromising and demanding with others.",
+      "result": "Type 1: The Reformer"
+    },
+    {
+      "text": "I've been appreciated for my unsinkable spirit and great sense of humor.",
+      "result": "Type 7: The Enthusiast"
+    },
+    {
+      "text": "I've been appreciated for my quiet strength and exceptional generosity.",
+      "result": "Type 2: The Helper"
+    },
+    {
+      "text": "Much of my success has been due to my talent for making a favorable impression.",
+      "result": "Type 3: The Achiever"
+    },
+    {
+      "text": "Much of my success has been achieved despite my lack of interest in developing 'interpersonal skills.'",
+      "result": "Type 5: The Investigator"
+    }
+  ]
 }
