@@ -7,29 +7,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jordan's Personality Quiz</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="new_styles.css">
     
     <script src="script.js"></script>
 </head>
 
 <body>
-    <h1 class="title">Enneagram Types</h1>
-    <div id="quiz" class="is-fullheight is-flex">
-        <form id="quizForm" class="has-text-centered">
-            <!-- dynamically generate the questions and answers -->
+    <div class="is-centered is-fullheight is-flex" style="outline: 1px solid red;">
+        <h1 class="title">Enneagram Types</h1>
 
-                            <!-- or -->
+        <div id="quiz" class="is-fullheight is-flex">
+            <form id="quizForm" class="has-text-centered">
+                <!-- dynamically generate the questions and answers -->
+    
+                                <!-- or -->
+    
+                <!-- show a final card with results -->
+                <div id="results" class="hidden">
+                    <p id="results-text" class="subtitle"></p>
+                    <h1 id="result" class="result title"></h1>
+                    <p id="resultExplanation" class=""></p>
+                    <div id="secondResult" class="hidden">
+                        <p id="secondResult-text" class="subtitle"></p>
+                        <h1 id="secondResultTitle" class="result title"></h1>
+                        <p id="secondResultExplanation" class=""></p>
+                    </div>
+                </div>
+    
+            </form>
+        </div>
+        <button id="start-over" class="button is-small">Start Over</button>
+        <button id="test" class="button is-small">test</button>
 
-            <!-- show a final card with results -->
-            <div id="results" class="hidden">
-                <p id="results-text" class="subtitle"></p>
-                <h1 id="result" class="result title"></h1>
-                <p id="resultExplanation" class=""></p>
-            </div>
-
-        </form>
     </div>
-    <button id="start-over" class="button is-small">Start Over</button>
 </body>
 
 </html>
