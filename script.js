@@ -10,7 +10,7 @@ fetch("questions.json")
         let questions = data.questions
 
         // SHUFFLE THE QUESTIONS ARRAY TO RANDOMIZE THE ORDER
-        // questions.sort(() => 0.5 - Math.random())
+        questions.sort(() => 0.5 - Math.random())
 
         // TRACK WHICH QUESTION IS BEING DISPLAYED
         let currentQuestion = 1
@@ -39,6 +39,7 @@ fetch("questions.json")
             <p class="questionNumber">${currentQuestion} / ${questions.length}</p>
             <div class="question-holder">
                 <p class="title">${question.text}</p>
+                <p>${question.result}</p>
             </div>
             <div class="container">
                 <div>
@@ -54,7 +55,6 @@ fetch("questions.json")
             
             // PUSH THE QUESTION TO THE PAGE AFTER IT IS BUILT
             quizForm.appendChild(questionDiv)
-            // <p>${question.result}</p> - can include that in html for testing to see each type
 
             // TRACK QUIZ SCORES PER CATEGORY
             // 1. get every input 
@@ -84,107 +84,79 @@ fetch("questions.json")
 
 
         // PRIMARY FUNCTION #2:
-        // async function checkAnswers() {
-        //     const typesResponse = await fetch("types.json");
-        //     const types = (await typesResponse.json()).enneagrams;
-        //     const resultsArray = questions.map(question => question.result);
-        //     const results = {};
-
-        //     for (const result of resultsArray) {
-        //         results[result] = (results[result] || 0) + 1;
-        //     }
-
-        //     for (const question of questions) {
-        //         const selectedAnswer = document.querySelector(`input[name="answer-${question.index + 1}"]:checked`);
-        //         if (selectedAnswer) {
-        //             results[question.result]++;
-        //         }
-        //     }
-
-        //     const resultScores = Object.values(results);
-        //     const highestScore = Math.max(...resultScores);
-        //     const tiedResults = Object.keys(results).filter(key => results[key] === highestScore);
-
-        //     const winner = types.find(type => type.title === tiedResults[0]).description;
-
-        //     document.getElementById("results").classList.add("active");
-        //     document.getElementById("results-text").innerHTML = "You align most closely with...";
-        //     document.getElementById("result").innerHTML = tiedResults[0];
-        //     document.getElementById("resultExplanation").innerHTML = winner;
-        // }
-
         function checkAnswers() {
+
+            // again, fetch json as a promise, process the promise back into json, return a promise (data)
             fetch("types.json")
-              .then(response => response.json())
-              .then(data => {
-                let types = data.enneagrams;
-          
-                let resultsArray = questions.map(question => question.result);
-                let results = {};
-                for (var i = 0; i < resultsArray.length; i++) {
-                  if (!results[resultsArray[i]]) {
-                    results[resultsArray[i]] = 0;
-                  }
-                }
-          
-                for (var i = 0; i < questions.length; i++) {
-                  let question = questions[i];
-                  let selectedAnswer = document.querySelector(
-                    `input[name="answer-${i + 1}"]:checked`
-                  );
-                  if (selectedAnswer) {
-                    results[question.result]++;
-                  }
-                }
-          
-                let highestScore = 0;
-                let secondHighestScore = 0;
-                let highestResults = [];
-                let secondHighestResults = [];
-          
-                for (var key in results) {
-                  if (results[key] > highestScore) {
-                    secondHighestScore = highestScore;
-                    secondHighestResults = highestResults;
-                    highestScore = results[key];
-                    highestResults = [key];
-                  } else if (results[key] === highestScore) {
-                    highestResults.push(key);
-                  } else if (results[key] > secondHighestScore) {
-                    secondHighestScore = results[key];
-                    secondHighestResults = [key];
-                  } else if (results[key] === secondHighestScore) {
-                    secondHighestResults.push(key);
-                  }
-                }
-          
-                let winner1, winner2;
-                for (let num in types) {
-                  if (types[num].title === highestResults[0]) {
-                    winner1 = types[num].description;
-                  }
-                  if (types[num].title === secondHighestResults[0]) {
-                    winner2 = types[num].description;
-                  }
-                }
-          
-                let resultStatement = "You align most closely with...";
-                let resultExplanation1 = winner1;
-                let resultExplanation2 = winner2;
-                let score1 = highestScore;
-                let score2 = secondHighestScore;
-          
-                document.getElementById("results").classList.add("active");
-                document.getElementById("results-text").innerHTML = resultStatement;
-                document.getElementById("result1").innerHTML = highestResults[0];
-                document.getElementById("resultExplanation1").innerHTML = resultExplanation1;
-                document.getElementById("score1").innerHTML = score1 + " questions";
-                document.getElementById("result2").innerHTML = secondHighestResults[0];
-                document.getElementById("resultExplanation2").innerHTML = resultExplanation2;
-                document.getElementById("score2").innerHTML = score2 + " questions";
-              });
-          }
-          
+                .then(response => response.json())
+                .then(data => {
+
+                    
+                    // DYNAMICALLY FILTER THROUGH THE QUESTION RESULTS TO MAKE VARIABLES FROM EACH POSSIBLE OUTCOME
+                    let questionTypesList = questions.map(question => question.result) // the type of each question
+                    
+                    let results = {} // array meant to track scores
+                    let types = data.enneagrams // list of the descriptive paragraphs that fit each result
+
+                    // BUILD LIST OF SCORES FOR EACH POSSIBLE RESULT
+                    for (var i = 0; i < questionTypesList.length; i++) {
+                        // look through the results object to see if the entry exists already
+                        if (!results[questionTypesList[i]]) {
+                            // and if it doesn't, add it, with an initial score of 0
+                            results[questionTypesList[i]] = 0
+                        }
+                    }
+
+                    // LOOP THROUGH QUESTIONS, UPDATE "RESULTS" ARRAY BASED ON SELECTED ANSWER
+                    for (let i = 0; i < questions.length; i++) {
+                        // for each specific question
+                        let question = questions[i]
+                        // create a variable 'agree' if the agree button was selected
+                        let agree = document.querySelector(`input[name="answer-${i + 1}"]:checked`)
+                        // check both that a button has been selected (to avoid throwing errors)
+                        // and that 'agree' was the selection
+                        if (agree && agree.value === "agree") {
+                            results[question.result]++ // increment the score for that result
+                        }
+                    }
+
+                    // console.log(results)
+
+
+                    // creating variables...
+                    let highestScore = 0
+                    let tiedResults = []
+                    let resultDescription = ""
+                    
+                    // This code block finds the result(s) with the highest score by iterating over the results
+                    // object and updating the highestScore and tiedResults variables as needed.
+                    for (let key in results) {
+                        if (results[key] > highestScore) {
+                            highestScore = results[key]
+                            tiedResults = [key]
+                        } else if (results[key] === highestScore) {
+                            tiedResults.push(key)
+                        }
+                    }
+
+                    // SELECT THE CORRESPONDING DESCRIPTION TO DISPLAY IT
+                    for (let key in types) {
+                        if (types[key].title === tiedResults[0]) {
+                            resultDescription = types[key].description
+                        }
+                    }
+
+
+                    // CREATE AND DISPLAY FINAL RESULTS
+                    document.getElementById("results").classList.add("active")
+                    document.getElementById("result").innerHTML = tiedResults[0]
+                    document.getElementById("resultExplanation").innerHTML = resultDescription
+                })
+        }
+    })
+                    
+                    
+
 
 
                     // determines the final result of the quiz by checking if there is only one result with the highest score. 
@@ -212,25 +184,38 @@ fetch("questions.json")
 
                     // redirect version of results
                     // if (result) {
-                    //     window.location.href = `${result}.html`
+                        //     window.location.href = `${result}.html`
+                        // }
+                        
+                        
                     // }
-
-                    
-                })
-            // }
             
-            // testing autofill
-            // document.getElementById("test").addEventListener("click", function () {
-            //     for (let i = 0; i < questions.length; i++) {
-            //         // console.log(document.querySelectorAll(`input[name="answer-${i + 1}"]`));
-            //         let answerRadios = document.querySelectorAll(`input[name="answer-${i + 1}"]`)
-            //         answerRadios[0].checked = true
-            //     }
-            //     currentQuestion = questions.length
-            //     checkAnswers()
-            // })
+        // 'optimized' version of function, might have some useful stuff?
 
-            // get the button and run a function on click
-            // on the current question, select either 'agree' or 'disagree' at random
-            // repeat until there are no more questions
-    // })
+             // async function checkAnswers() {
+        //     const typesResponse = await fetch("types.json");
+        //     const types = (await typesResponse.json()).enneagrams;
+        //     const resultsArray = questions.map(question => question.result);
+        //     const results = {};
+
+        //     for (const result of resultsArray) {
+        //         results[result] = (results[result] || 0) + 1;
+        //     }
+
+        //     for (const question of questions) {
+        //         const selectedAnswer = document.querySelector(`input[name="answer-${question.index + 1}"]:checked`);
+        //         if (selectedAnswer) {
+        //             results[question.result]++;
+        //         }
+        //     }
+
+        //     const resultScores = Object.values(results);
+        //     const highestScore = Math.max(...resultScores);
+        //     const tiedResults = Object.keys(results).filter(key => results[key] === highestScore);
+
+        //     const winner = types.find(type => type.title === tiedResults[0]).description;
+
+        //     document.getElementById("results").classList.add("active");
+        //     document.getElementById("results-text").innerHTML = "You align most closely with...";
+        //     document.getElementById("result").innerHTML = tiedResults[0];
+        //     document.getElementById("resultExplanation").innerHTML = winner;
