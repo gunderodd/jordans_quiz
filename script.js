@@ -14,11 +14,11 @@ fetch("questions.json")
 
         // TRACK WHICH QUESTION IS BEING DISPLAYED
         let currentQuestion = 1
-        
+
         // PRIMARY FUNCTION #1:
         // DISPLAY EACH QUESTION AND PROGRESS THROUGH QUIZ AS EACH IS ANSWERED
         function displayQuestion() {
-            
+
             // REMOVE ACTIVE CLASS FROM THE LAST QUESTION SO THAT IT DISAPPEARS AND CAN BE REPLACED
             let activeQuestion = document.querySelector(".question.active")
             // uses the ternary operator (a conditional, instead of saying 'if'. 
@@ -35,13 +35,13 @@ fetch("questions.json")
             let questionDiv = document.createElement("div")
             questionDiv.classList.add("question")
             questionDiv.classList.add("active")
+            // questionDiv.classList.add("container")
             questionDiv.innerHTML = `
-            <p class="questionNumber">${currentQuestion} / ${questions.length}</p>
-            <div class="question-holder">
+            <p class="questionNumber block section">${currentQuestion} / ${questions.length}</p>
+            <div class="question-holder block container is-flex section">
                 <p class="title">${question.text}</p>
-                <p>${question.result}</p>
             </div>
-            <div class="container">
+            <div class="container content section block" style="border: 1px solid red;">
                 <div>
                     <input type="radio" id="answer-${currentQuestion}-1" name="answer-${currentQuestion}" value="agree">
                     <label for="answer-${currentQuestion}-1" class="agreeButton">Agree</label>
@@ -52,7 +52,7 @@ fetch("questions.json")
                 </div>
             </div>
             `
-            
+
             // PUSH THE QUESTION TO THE PAGE AFTER IT IS BUILT
             quizForm.appendChild(questionDiv)
 
@@ -61,7 +61,8 @@ fetch("questions.json")
             // 2. get the input's radio buttons 
             // 3. if they change, check whether to show another question or tally the results and display those
             let answerRadios = document.querySelectorAll(`input[name="answer-${currentQuestion}"]`)
-            answerRadios.forEach(radio => {radio.addEventListener("change", () => {
+            answerRadios.forEach(radio => {
+                radio.addEventListener("change", () => {
                     // INCREMENT THE CURRENT QUESTION COUNTER
                     currentQuestion++
                     // CHECK IF THIS IS THE LAST QUESTION OF THE QUIZ
@@ -86,15 +87,22 @@ fetch("questions.json")
         // PRIMARY FUNCTION #2:
         function checkAnswers() {
 
+            // REMOVE ACTIVE CLASS FROM THE LAST QUESTION SO THAT IT DISAPPEARS AND CAN BE REPLACED
+            // NOTE: possibly redudant, making sure the question disappears to make space for result
+            let activeQuestion = document.querySelector(".question.active")
+            // uses the ternary operator (a conditional, instead of saying 'if'. 
+            // 'null' does nothing if there isn't an active question)
+            activeQuestion ? activeQuestion.classList.remove("active") : null
+
             // again, fetch json as a promise, process the promise back into json, return a promise (data)
             fetch("types.json")
                 .then(response => response.json())
                 .then(data => {
 
-                    
+
                     // DYNAMICALLY FILTER THROUGH THE QUESTION RESULTS TO MAKE VARIABLES FROM EACH POSSIBLE OUTCOME
                     let questionTypesList = questions.map(question => question.result) // the type of each question
-                    
+
                     let results = {} // array meant to track scores
                     let types = data.enneagrams // list of the descriptive paragraphs that fit each result
 
@@ -120,102 +128,72 @@ fetch("questions.json")
                         }
                     }
 
-                    // console.log(results)
-
+                    // THE SCORES FOR EACH CATEGORY HAVE BEEN TALLIED AND ARE READY TO BE DELIVERED TO THE USER
+                    console.log(results)
 
                     // creating variables...
                     let highestScore = 0
-                    let tiedResults = []
+                    let finalResults = []
                     let resultDescription = ""
-                    
+
                     // This code block finds the result(s) with the highest score by iterating over the results
                     // object and updating the highestScore and tiedResults variables as needed.
                     for (let key in results) {
+                        // console.log(results[key] + " " + key)
+                        // check if the score is bigger than the current highest score...
                         if (results[key] > highestScore) {
-                            highestScore = results[key]
-                            tiedResults = [key]
+                            highestScore = results[key] // variable equals the SCORE (number)
+                            finalResults = [key] // variable equals the STRING 'type' value that scored highest
+                            // ...or, if it is tied with the highest score
                         } else if (results[key] === highestScore) {
-                            tiedResults.push(key)
+                            finalResults.push(key) // in which case, add that to the list
                         }
                     }
+                    
+                    // append appropriate statement at top of page above result(s) list
+                    let resultStatement = document.createElement("p")
+                    resultStatement.classList.add("title")
+                    
+                    finalResults.length === 1 ? resultStatement.innerHTML =
+                    "You agreed most often with statements pointing to:"
+                    : resultStatement.innerHTML =
+                    "You agreed most often with statements pointing to either:"
+                    
+                    quizForm.appendChild(resultStatement)
+                    
+                    // CREATE THE DYNAMIC HTML FOR THE RESULT(S)
+                    for (let key in finalResults) {
+                        
+                        let resultDiv = document.createElement("div")
+                        resultDiv.classList.add("question")
+                        resultDiv.classList.add("active")
 
-                    // SELECT THE CORRESPONDING DESCRIPTION TO DISPLAY IT
-                    for (let key in types) {
-                        if (types[key].title === tiedResults[0]) {
-                            resultDescription = types[key].description
+                        // put an OR between multiple results, but not after last one
+                        finalResults.length === 1 || key == finalResults.length - 1 ? option = "" : option = "OR"
+
+                        // SET THE DESRCRIPTION
+                        for (i in types) {
+                            if (types[i].title === finalResults[key]) {
+                                resultDescription = types[i].description
+                            }
                         }
+                        
+                        resultDiv.innerHTML = `
+                        <h1 class="title block">${finalResults[key]}</h1>
+                        <p class="block content">${resultDescription}</p>
+                        <br>
+                        <p class="has-text-weight-bold block">${option}</p>
+                        `
+                        // PUSH THE RESULTS TO THE PAGE AFTER IT IS BUILT
+                        quizForm.appendChild(resultDiv)
                     }
-
-
-                    // CREATE AND DISPLAY FINAL RESULTS
-                    document.getElementById("results").classList.add("active")
-                    document.getElementById("result").innerHTML = tiedResults[0]
-                    document.getElementById("resultExplanation").innerHTML = resultDescription
                 })
         }
     })
-                    
-                    
-
-
-
-                    // determines the final result of the quiz by checking if there is only one result with the highest score. 
-                    // If so, it sets it as the final result. If multiple results are tied, it creates a string of the tied 
-                    // results and displays it in an alert. If a final result is found, it redirects to the corresponding result page
-
-                    // if (tiedResults.length === 1) {
-                    //     result = tiedResults[0]
-                    //     var resultsText = "You are a " + result + "!"
-                    //     document.getElementById("results-text").innerHTML = resultsText
-                    //     document.getElementById("results").classList.remove("hidden")
-                    // } else {
-                    //     var resultsText = ""
-                    //     for (var i = 0 i < tiedResults.length i++) {
-                    //         resultsText += tiedResults[i]
-                    //         if (i !== tiedResults.length - 1) {
-                    //             resultsText += ", "
-                    //         }
-                    //     }
-                    //     // alert(resultString)
-                    //     var resultsText = "You are a mix of " + resultsText + "!"
-                    //     document.getElementById("results-text").innerHTML = resultsText
-                    //     document.getElementById("results").classList.remove("hidden")
-                    // }
-
-                    // redirect version of results
-                    // if (result) {
-                        //     window.location.href = `${result}.html`
+                        // // SELECT THE CORRESPONDING DESCRIPTION TO DISPLAY IT
+                        // // currently only works for top result
+                        // for (let key in types) {
+                        //     if (types[key].title === finalResults[0]) {
+                        //         resultDescription = types[key].description
+                        //     }
                         // }
-                        
-                        
-                    // }
-            
-        // 'optimized' version of function, might have some useful stuff?
-
-             // async function checkAnswers() {
-        //     const typesResponse = await fetch("types.json");
-        //     const types = (await typesResponse.json()).enneagrams;
-        //     const resultsArray = questions.map(question => question.result);
-        //     const results = {};
-
-        //     for (const result of resultsArray) {
-        //         results[result] = (results[result] || 0) + 1;
-        //     }
-
-        //     for (const question of questions) {
-        //         const selectedAnswer = document.querySelector(`input[name="answer-${question.index + 1}"]:checked`);
-        //         if (selectedAnswer) {
-        //             results[question.result]++;
-        //         }
-        //     }
-
-        //     const resultScores = Object.values(results);
-        //     const highestScore = Math.max(...resultScores);
-        //     const tiedResults = Object.keys(results).filter(key => results[key] === highestScore);
-
-        //     const winner = types.find(type => type.title === tiedResults[0]).description;
-
-        //     document.getElementById("results").classList.add("active");
-        //     document.getElementById("results-text").innerHTML = "You align most closely with...";
-        //     document.getElementById("result").innerHTML = tiedResults[0];
-        //     document.getElementById("resultExplanation").innerHTML = winner;
