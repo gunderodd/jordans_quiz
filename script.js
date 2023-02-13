@@ -37,11 +37,11 @@ fetch("questions.json")
             questionDiv.classList.add("active")
             // questionDiv.classList.add("container")
             questionDiv.innerHTML = `
-            <p class="questionNumber block section">${currentQuestion} / ${questions.length}</p>
+            <p class="questionNumber block has-text-weight-semibold">${currentQuestion} / ${questions.length}</p>
             <div class="question-holder block container is-flex section">
                 <p class="title">${question.text}</p>
             </div>
-            <div class="container content section block" style="border: 1px solid red;">
+            <div class="container content block has-text-weight-semibold" id="buttonHolder">
                 <div>
                     <input type="radio" id="answer-${currentQuestion}-1" name="answer-${currentQuestion}" value="agree">
                     <label for="answer-${currentQuestion}-1" class="agreeButton">Agree</label>
@@ -153,6 +153,9 @@ fetch("questions.json")
                     // append appropriate statement at top of page above result(s) list
                     let resultStatement = document.createElement("p")
                     resultStatement.classList.add("title")
+                    resultStatement.classList.add("resultStatement")
+                    resultStatement.classList.add("is-italic")
+
                     
                     finalResults.length === 1 ? resultStatement.innerHTML =
                     "You agreed most often with statements pointing to:"
@@ -179,10 +182,12 @@ fetch("questions.json")
                         }
                         
                         resultDiv.innerHTML = `
-                        <h1 class="title block">${finalResults[key]}</h1>
-                        <p class="block content">${resultDescription}</p>
-                        <br>
-                        <p class="has-text-weight-bold block">${option}</p>
+                        <div class="block section" id="resultDiv">
+                            <h1 class="title">${finalResults[key]}</h1>
+                            <p class="block content is-size-3" id="descriptionDiv">${resultDescription}</p>
+                            <br>
+                            <p class="has-text-weight-bold block is-size-3 is-italic">${option}</p>
+                        </div>
                         `
                         // PUSH THE RESULTS TO THE PAGE AFTER IT IS BUILT
                         quizForm.appendChild(resultDiv)
